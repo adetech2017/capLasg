@@ -1,0 +1,47 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+<h1>Accreditor Application Form</h1>
+<form method="post" enctype="multipart/form-data" class="admin-form">
+  {% csrf_token %}
+  <table class="fieldset admin-form">
+      {{ accreditor_form.as_table }}
+  </table>
+
+  <h2>Application Details</h2>
+  <div id="formset">
+      {{ formset.management_form }}
+      {% for form in formset %}
+          <div class="inline-related">
+              {{ form.id }}
+              <table class="fieldset admin-form">
+                  {{ form.as_table }}
+              </table>
+          </div>
+      {% endfor %}
+  </div>
+
+  <button type="button" id="add-application">Add Application</button>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const addButton = document.getElementById("add-application");
+      const formsetDiv = document.getElementById("formset");
+      let totalForms = {{ formset.total_form_count }};
+      const emptyForm = '{{ formset.empty_form }}';
+
+      addButton.addEventListener("click", function() {
+          const newForm = document.createElement("div");
+          const regex = new RegExp('__prefix__', 'g');
+          const newFormHtml = emptyForm.replace(regex, totalForms);
+          newForm.innerHTML = newFormHtml;
+          formsetDiv.appendChild(newForm);
+          totalForms++;
+      });
+  });
+</script>
+  
+{% endblock %}

@@ -1,0 +1,113 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+            <div class="row m-0">
+                <div class="col-sm-4">
+                    <div class="page-header float-left">
+                        <div class="page-title">
+                            <h1>Dashboard</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Accreditor Application</strong>
+                        </div>
+                        <div class="card-body">
+                            <!-- Credit Card -->
+                            <div id="pay-invoice">
+                                <div class="card-body">
+    
+                                    <!-- application_form.html -->
+                                    <form method="post" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        {{ accreditor_form.as_p }}
+                                    
+                                        <table id="application-formset">
+                                        <thead>
+                                            <tr>
+                                            <th>Full Name</th>
+                                            <th>Registration Body No</th>
+                                            <th>Position</th>
+                                            <th>Profession</th>
+                                            <th>LASRRA</th>
+                                            <th>Reg Certificate</th>
+                                            <th>Curr License</th>
+                                            <th>Pro Certificate</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for form in formset %}
+                                            <tr>
+                                                <td>{{ form.full_name }}</td>
+                                                <td>{{ form.reg_body_no }}</td>
+                                                <td>{{ form.position }}</td>
+                                                <td>{{ form.profession }}</td>
+                                                <td>{{ form.lasrra }}</td>
+                                                <td>{{ form.reg_certificate }}</td>
+                                                <td>{{ form.curr_license }}</td>
+                                                <td>{{ form.pro_certificate }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                        </table>
+                                    
+                                        {{ formset.management_form }}
+                                        <button type="button" id="add-form">Add Another Application</button>
+                                        <button type="submit">Submit</button>
+                                    </form>
+                                    
+                                    <!-- This will be used as a template to add new forms -->
+                                    <div id="empty-form" style="display: none;">
+                                        <table>
+                                        <tbody>
+                                            {{ formset.empty_form }}
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                    
+                                    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                    <script>
+                                        $(document).ready(function() {
+                                        $('#add-form').click(function() {
+                                            var formIdx = $('#application-formset tbody tr').length;
+                                            var form = $('#empty-form table').html().replace(/__prefix__/g, formIdx);
+                                            $('#application-formset tbody').append(form);
+                                        });
+                                        });
+                                    </script>
+  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+
+
+    {% comment %} <script>
+        document.getElementById('add-application').addEventListener('click', function() {
+            const formsetContainer = document.getElementById('application-formset');
+            const newForm = formsetContainer.querySelector('.form-group:last-child').cloneNode(true);
+            const formCount = document.querySelectorAll('.form-group').length;
+
+            newForm.innerHTML = newForm.innerHTML.replace(/__prefix__/g, formCount);
+
+            formsetContainer.appendChild(newForm);
+        });
+    </script> {% endcomment %}
+{% endblock %}

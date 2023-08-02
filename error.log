@@ -1,0 +1,645 @@
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 184, in application_create_view
+    return render(request, 'dashboard/accreditor_application.html', {'accreditor_form': accreditor_form, 'formset': formset})
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 121, in __len__
+    return len(self.forms)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 205, in forms
+    return [
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 206, in <listcomp>
+    self._construct_form(i, **self.get_form_kwargs(i))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 1111, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 731, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 244, in _construct_form
+    form = self.form(**defaults)
+  File "/Applications/devOps/capLasg/accreditors/forms.py", line 92, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: BaseModelForm.__init__() got an unexpected keyword argument 'current_user_id'
+"GET /application/create/ HTTP/1.1" 500 184080
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 187, in application_create_view
+    return render(request, 'dashboard/accreditor_application.html', {'accreditor_form': accreditor_form, 'formset': formset})
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 121, in __len__
+    return len(self.forms)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 205, in forms
+    return [
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 206, in <listcomp>
+    self._construct_form(i, **self.get_form_kwargs(i))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 1111, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 731, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 244, in _construct_form
+    form = self.form(**defaults)
+  File "/Applications/devOps/capLasg/accreditors/forms.py", line 92, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: BaseModelForm.__init__() got an unexpected keyword argument 'current_user_id'
+"GET /application/create/ HTTP/1.1" 500 184217
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 187, in application_create_view
+    return render(request, 'dashboard/accreditor_application.html', {'accreditor_form': accreditor_form, 'formset': formset})
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 121, in __len__
+    return len(self.forms)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 205, in forms
+    return [
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 206, in <listcomp>
+    self._construct_form(i, **self.get_form_kwargs(i))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 1111, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 731, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 244, in _construct_form
+    form = self.form(**defaults)
+  File "/Applications/devOps/capLasg/accreditors/forms.py", line 92, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: BaseModelForm.__init__() got an unexpected keyword argument 'current_user_id'
+"GET /application/create/ HTTP/1.1" 500 184217
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 187, in application_create_view
+    return render(request, 'dashboard/accreditor_application.html', {'accreditor_form': accreditor_form, 'formset': formset})
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 194, in render
+    len_values = len(values)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 121, in __len__
+    return len(self.forms)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/utils/functional.py", line 57, in __get__
+    res = instance.__dict__[self.name] = self.func(instance)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 205, in forms
+    return [
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 206, in <listcomp>
+    self._construct_form(i, **self.get_form_kwargs(i))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 1111, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 731, in _construct_form
+    form = super()._construct_form(i, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/formsets.py", line 244, in _construct_form
+    form = self.form(**defaults)
+  File "/Applications/devOps/capLasg/accreditors/forms.py", line 92, in __init__
+    super().__init__(*args, **kwargs)
+TypeError: BaseModelForm.__init__() got an unexpected keyword argument 'current_user_id'
+"GET /application/create/ HTTP/1.1" 500 184047
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 141, in post
+    formset = ApplicationFormSet(request.POST, request.FILES, **self.get_formset_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_formset_kwargs
+    kwargs = super().get_formset_kwargs(form_kwargs)
+AttributeError: 'super' object has no attribute 'get_formset_kwargs'
+"POST /accreditor/application/ HTTP/1.1" 500 77538
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 141, in post
+    formset = ApplicationFormSet(request.POST, request.FILES, **self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs()
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"POST /accreditor/application/ HTTP/1.1" 500 77299
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 141, in post
+    formset = ApplicationFormSet(request.POST, request.FILES, **self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs()
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"POST /accreditor/application/ HTTP/1.1" 500 77299
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 141, in post
+    formset = ApplicationFormSet(request.POST, request.FILES, **self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs()
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"POST /accreditor/application/ HTTP/1.1" 500 77299
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 136, in get
+    formset = ApplicationFormSet(**self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs(form_kwargs)
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"GET /accreditor/application/ HTTP/1.1" 500 76630
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 136, in get
+    formset = ApplicationFormSet(**self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs(form_kwargs)
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"GET /accreditor/application/ HTTP/1.1" 500 76767
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 136, in get
+    formset = ApplicationFormSet(**self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs(form_kwargs)
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"GET /accreditor/application/ HTTP/1.1" 500 76767
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 136, in get
+    formset = ApplicationFormSet(**self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs(form_kwargs)
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"GET /accreditor/application/ HTTP/1.1" 500 76767
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 136, in get
+    formset = ApplicationFormSet(**self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs(form_kwargs)
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"GET /accreditor/application/ HTTP/1.1" 500 76767
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 136, in get
+    formset = ApplicationFormSet(**self.get_form_kwargs())
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 130, in get_form_kwargs
+    kwargs = super().get_form_kwargs(form_kwargs)
+AttributeError: 'super' object has no attribute 'get_form_kwargs'
+"GET /accreditor/application/ HTTP/1.1" 500 76767
+Internal Server Error: /accreditor/application/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 131, in get
+    formset = ApplicationFormSet(current_user_id=request.user.id)
+TypeError: BaseFormSet.__init__() got an unexpected keyword argument 'current_user_id'
+"GET /accreditor/application/ HTTP/1.1" 500 72927
+Internal Server Error: /accreditor/dashboard
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 34, in home
+    return render(request, "dashboard/index.html")
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'accreditor_application' not found. 'accreditor_application' is not a valid view function or pattern name.
+"GET /accreditor/dashboard HTTP/1.1" 500 139314
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 214, in accreditor_application_create_view
+    return render(request, 'accreditor_application_form.html', {'accreditor_form': accreditor_form, 'formset': formset})
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: accreditor_application_form.html
+"GET /application/create/ HTTP/1.1" 500 83271
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 206, in accreditor_application_create_view
+    return redirect('success')  # Replace 'success' with the URL name for the success page
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 48, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 145, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'success' not found. 'success' is not a valid view function or pattern name.
+"POST /application/create/ HTTP/1.1" 500 91547
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 213, in accreditor_application_create_view
+    formset = AccreditorApplicationFormSet(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 1096, in __init__
+    super().__init__(data, files, prefix=prefix, queryset=qs, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/forms/models.py", line 672, in __init__
+    super().__init__(
+TypeError: BaseFormSet.__init__() got an unexpected keyword argument 'can_delete'
+"GET /application/create/ HTTP/1.1" 500 79224
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 214, in accreditor_application_create_view
+    return render(request, 'dashboard/accreditor_application_form.html', {'accreditor_form': accreditor_form, 'formset': formset})
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/backends/django.py", line 33, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/engine.py", line 175, in get_template
+    template, origin = self.find_template(template_name)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/engine.py", line 157, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 200, in compile_nodelist
+    return parser.parse()
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 293, in do_extends
+    nodelist = parser.parse()
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/loader_tags.py", line 232, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 853, in do_for
+    nodelist_loop = parser.parse(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 513, in parse
+    raise self.error(token, e)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/base.py", line 511, in parse
+    compiled_result = compile_func(self, token)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/template/defaulttags.py", line 1484, in do_with
+    raise TemplateSyntaxError(
+django.template.exceptions.TemplateSyntaxError: 'with' expected at least one variable assignment
+"GET /application/create/ HTTP/1.1" 500 184535
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 206, in accreditor_application_create_view
+    return redirect('success')  # Replace 'success' with the URL name for the success page
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 48, in redirect
+    return redirect_class(resolve_url(to, *args, **kwargs))
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/shortcuts.py", line 145, in resolve_url
+    return reverse(to, args=args, kwargs=kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'success' not found. 'success' is not a valid view function or pattern name.
+"POST /application/create/ HTTP/1.1" 500 91415
+Internal Server Error: /application/create/
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+psycopg2.errors.UniqueViolation: duplicate key value violates unique constraint "accreditors_accreditor_user_id_key"
+DETAIL:  Key (user_id)=(6) already exists.
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+  File "/Applications/devOps/capLasg/accreditors/views.py", line 143, in accreditor_application_create_view
+    accreditor.save()
+  File "/Applications/devOps/capLasg/accreditors/models.py", line 78, in save
+    super().save(*args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1020, in _save_table
+    results = self._do_insert(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/models/base.py", line 1061, in _do_insert
+    return manager._insert(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/models/query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/models/sql/compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 102, in execute
+    return super().execute(sql, params)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/Applications/devOps/capLasg/.venv/lib/python3.10/site-packages/django/db/backends/utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+django.db.utils.IntegrityError: duplicate key value violates unique constraint "accreditors_accreditor_user_id_key"
+DETAIL:  Key (user_id)=(6) already exists.
+
+"POST /application/create/ HTTP/1.1" 500 152030

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "images" as baseUrl %}
+{% load crispy_forms_tags%}
+{% block content %}
+
+<!-- Slider Area Start-->
+<div class="slider-area slider-bg ">
+    <!-- Single Slider -->
+    <div class="single-slider d-flex align-items-center slider-height3">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-8 col-lg-9 col-md-12 ">
+                    <div class="hero__caption hero__caption3 text-center">
+                        <h1 data-animation="fadeInLeft" data-delay=".6s ">Register New</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+    <!-- Slider Shape -->
+    <div class="slider-shape d-none d-lg-block">
+        <img class="slider-shape1" src="{% static 'assets/img/hero/top-left-shape.png' %}" alt="">
+    </div>
+</div>
+<!-- Slider Area End -->
+<!--?  Contact Area start  -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="contact-title">Create Account Now</h2>
+            </div>
+            <div class="col-lg-8">
+                <form class="form-contact contact_form" method="post" enctype="multipart/form-data">
+                    <div class="row">
+                        {% csrf_token %}
+                        {{ application_form|crispy }}
+                        {{ accreditor_form|crispy }}
+                        <button type="submit">Create</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 offset-lg-1">
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-home"></i></span>
+                    <div class="media-body">
+                        <h3>Buttonwood, California.</h3>
+                        <p>Rosemead, CA 91770</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+                    <div class="media-body">
+                        <h3>+1 253 565 2365</h3>
+                        <p>Mon to Fri 9am to 6pm</p>
+                    </div>
+                </div>
+                <div class="media contact-info">
+                    <span class="contact-info__icon"><i class="ti-email"></i></span>
+                    <div class="media-body">
+                        <h3>support@colorlib.com</h3>
+                        <p>Send us your query anytime!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock content %}

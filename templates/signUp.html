@@ -1,0 +1,32 @@
+{% extends 'authbase.html' %}
+{% load static %}
+{% static "images" as baseUrl %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<!-- Login Admin -->
+<form class="form-default" method="POST">
+    {% csrf_token %}
+    <div class="login-form">
+        <!-- logo-login -->
+        <div class="logo-login">
+            <a href="/">
+                <img src="{% static 'assets/img/logo/logo1.png' %}" alt="">
+            </a>
+        </div>
+        <h2>Registration Here</h2>
+        <div class="form-input">
+            {{ user_form|crispy }}
+        </div>
+        
+        <div class="form-input pt-30">
+            {% comment %} <button type="submit">Registration</button> {% endcomment %}
+            <input type="submit" name="submit" value="Registration">
+        </div>
+        <!-- Forget Password -->
+        <a href="{% url 'accreditors:login' %}" class="registration">login</a>
+    </div>
+</form>
+<!-- /end login form -->
+
+{% endblock content %}
