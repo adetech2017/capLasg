@@ -84,7 +84,7 @@ def register(request):
                 user = authenticate(username=user.email, password=user_form.cleaned_data['password1'])
                 login(request, user)
 
-                return redirect('home')  # Replace 'home' with the URL to redirect after registration
+                return redirect('accreditors:dashboard')  # Replace 'home' with the URL to redirect after registration
     else:
         user_form = UserRegistrationForm()
 
