@@ -35,10 +35,17 @@ from django.forms import formset_factory
         
 
 class AccreditorForm(forms.ModelForm):
+    # def __init__(self, *args, **kwargs):
+    #     disable_category = kwargs.pop('disable_category', False)
+    #     super(AccreditorForm, self).__init__(*args, **kwargs)
+    #     if disable_category:
+    #         self.fields['category'].disabled = True
+            
     class Meta:
         model = Accreditor
+        exclude = ['description']
         #fields = '__all__'
-        fields = ['category', 'contact_number', 'contact_email', 'contact_address', 'description', 'expression_doc']
+        fields = ['category', 'contact_number', 'contact_email', 'contact_address']
         
         widgets = {
             'expression_doc': forms.FileInput(attrs={'accept': 'application/pdf'}),
@@ -102,6 +109,56 @@ class ApplicationForm(forms.ModelForm):
             'pro_certificate': forms.FileInput(attrs={'accept': 'application/pdf'}),
             'DELETE': forms.HiddenInput()
         }
+        labels = {
+            'reg_certificate': 'Regulatory Body Reg. Certificate(pdf)',
+            'curr_license': 'Current Practising License (pdf)',
+            'pro_certificate': 'Upload Resume Card (pdf)',
+            'reg_body_no': 'Regulatory Body Reg. No',
+            'lasrra': 'LASRRA (pdf)',            
+        }
     
 
 AccreditorApplicationFormSet = inlineformset_factory(Accreditor, Application, form=ApplicationForm, extra=1, can_delete=False)
+
+
+class ApplicationForms(forms.ModelForm):
+    class Meta:
+        model = Application
+        # fields = '__all__'
+        fields = ['full_name', 'reg_body_no', 'position', 'profession', 'lasrra', 'reg_certificate', 'curr_license', 'pro_certificate']
+        exclude = ['status']  # Exclude the 'status' field from the form
+
+        widgets = {
+            'lasrra': forms.FileInput(attrs={'accept': 'application/pdf'}),
+            'reg_certificate': forms.FileInput(attrs={'accept': 'application/pdf'}),
+            'curr_license': forms.FileInput(attrs={'accept': 'application/pdf'}),
+            'pro_certificate': forms.FileInput(attrs={'accept': 'application/pdf'}),
+            'DELETE': forms.HiddenInput()
+        }
+
+        labels = {
+            'reg_certificate': 'Regulatory Body Reg. Certificate(pdf)',
+            'curr_license': 'Current Practising License (pdf)',
+            'pro_certificate': 'Upload Resume Card (pdf)',
+            'reg_body_no': 'Regulatory Body Registration No',
+            'lasrra': 'LASRRA (pdf)',
+        }
+
+MyApplicationFormSet = formset_factory(ApplicationForm, extra=1)
+
+class MyApplicationForm(ApplicationForm):
+    pass  # This is an empty class that inherits from ApplicationForm
+
+
+
+class AccreditorApplicationForm(forms.ModelForm):
+    class Meta:
+        model = Accreditor
+        fields = ['category', 'contact_number', 'contact_email', 'contact_address', 'expression_doc', 'description']
+
+    def __init__(self, *args, accreditor=None, **kwargs):
+        super(AccreditorApplicationForm, self).__init__(*args, **kwargs)
+        self.accreditor = accreditor
+
+
+ApplicationFormSet = inlineformset_factory(Accreditor, Application, fields=['full_name', 'reg_body_no', 'position', 'profession', 'lasrra', 'reg_certificate', 'curr_license', 'pro_certificate'], extra=1)

@@ -1,47 +1,130 @@
 {% extends 'dashboard/base.html' %}
 {% load static %}
+{% load crispy_forms_tags%}
 
 {% block content %}
-<h1>Accreditor Application Form</h1>
-<form method="post" enctype="multipart/form-data" class="admin-form">
-  {% csrf_token %}
-  <table class="fieldset admin-form">
-      {{ accreditor_form.as_table }}
-  </table>
 
-  <h2>Application Details</h2>
-  <div id="formset">
-      {{ formset.management_form }}
-      {% for form in formset %}
-          <div class="inline-related">
-              {{ form.id }}
-              <table class="fieldset admin-form">
-                  {{ form.as_table }}
-              </table>
-          </div>
-      {% endfor %}
-  </div>
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Accreditor Application Form</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <strong class="card-title">Accreditor Section</strong>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data" class="admin-form">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-4">
+                                    {{ accreditor_form.category|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ accreditor_form.contact_number|as_crispy_field }}
+                                </div>
+                                <div class="col-md-4">
+                                    {{ accreditor_form.contact_email|as_crispy_field }}
+                                </div>
+                                <div class="col-md-6">
+                                    {{ accreditor_form.contact_address|as_crispy_field }}
+                                </div>
+                            </div>
+                            {% comment %} <table class="fieldset admin-form">
+                                {{ accreditor_form.as_table }}
+                            </table> {% endcomment %}
+                            <hr />
+                            <h2>Application Details</h2>
+                            <div id="app-formset">
+                                {{ formset.management_form }}
+                                {% for form in formset %}
+                                    <div class="row">
+                                        {{ form.id }}
+                                        <div class="col-md-4">
+                                            {{ form.full_name|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form.reg_body_no|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-3">
+                                            {{ form.position|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form.profession|as_crispy_field }}
+                                        </div>
 
-  <button type="button" id="add-application">Add Application</button>
-  <button type="submit">Submit</button>
-</form>
+                                        <div class="col-md-4">
+                                            {{ form.lasrra|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form.curr_license|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form.reg_certificate|as_crispy_field }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            {{ form.pro_certificate|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                {% endfor %}
+                            </div>
+                            <div class="card-body">
+                                <button type="button" id="add-application" class="btn btn-primary">Add Another Application</button>
+                                <button type="button" class="btn btn-info">Save & Continue</button>
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                            {% comment %} <div id="formset">
+                                {{ formset.management_form }}
+                                {% for form in formset %}
+                                    <div class="inline-related">
+                                        {{ form.id }}
+                                        <hr />
+                                        <table class="fieldset admin-form">
+                                            {{ form.as_table }}
+                                        </table>
+                                    </div>
+                                {% endfor %}
+                            </div> {% endcomment %}
+                            {% comment %} <hr />
+                            <button type="button" id="add-application">Add Another Application</button>
+                            <button type="submit">Save</button> {% endcomment %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  document.addEventListener("DOMContentLoaded", function() {
-      const addButton = document.getElementById("add-application");
-      const formsetDiv = document.getElementById("formset");
-      let totalForms = {{ formset.total_form_count }};
-      const emptyForm = '{{ formset.empty_form }}';
-
-      addButton.addEventListener("click", function() {
-          const newForm = document.createElement("div");
-          const regex = new RegExp('__prefix__', 'g');
-          const newFormHtml = emptyForm.replace(regex, totalForms);
-          newForm.innerHTML = newFormHtml;
-          formsetDiv.appendChild(newForm);
-          totalForms++;
-      });
-  });
+    $(document).ready(function() {
+        var form_idx = $('#id_application_set-TOTAL_FORMS').val();
+        $('#add-application').on('click', function(e) {
+            e.preventDefault();
+            $('#formset').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+            $('#id_application_set-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+            form_idx++;
+        });
+    });
 </script>
-  
+
+<div id="empty_form" style="display: none;">
+    {{ application_formset.empty_form.as_p }}
+</div>
+
+
 {% endblock %}

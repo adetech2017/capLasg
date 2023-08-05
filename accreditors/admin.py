@@ -40,7 +40,7 @@ class AccreditorAdmin(admin.ModelAdmin):
     pass
     inlines = [ApplicationInline, ReviewInline]
     list_display = ("user", "accreditor_code", "category", "contact_number", "contact_email")
-    #search_fields = ['group_name']
+    search_fields = ['category']
     
     # Exclude the accreditor_code field from the admin form
     exclude = ['accreditor_code']

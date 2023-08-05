@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title> CPA | Lagos State</title>
+    <title> CAP | Lagos State</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -26,6 +26,69 @@
     <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <style>
+        /* Override styles for the ordered list with the custom class "custom-ol" */
+        .custom-ol {
+            list-style-type: none; /* Remove default numbering */
+            padding-left: 20px; /* Add some left padding */
+        }
+
+        .custom-ol li {
+            margin-bottom: 10px; /* Add space between list items */
+            counter-increment: list-counter; /* Increment the counter */
+        }
+
+        .custom-ol li::before {
+            content: counter(list-counter, lower-roman) ". "; /* Add custom numbering using lower-roman for Roman numerals */
+            font-weight: bold;
+            margin-right: 5px; /* Add space between counter and content */
+        }
+
+        .custom-ul {
+            list-style: none; /* Remove default list-style (bullets) */
+            padding-left: 20px; /* Add some left padding */
+        }
+
+        .custom-ul li {
+            margin-bottom: 10px; /* Add space between list items */
+            position: relative; /* Set the position to relative to create space for custom bullets */
+        }
+
+        .custom-ul li::before {
+            content: "\2022"; /* Use a custom bullet (you can change this to any symbol you like) */
+            font-size: 1.2em; /* Adjust the size of the custom bullet */
+            position: absolute;
+            left: -20px; /* Position the bullet to the left of the list item */
+            top: 50%; /* Vertically center the bullet */
+            transform: translateY(-50%); /* Vertically center the bullet */
+            color: #007bff; /* Set the color of the custom bullet (blue in this case) */
+            font-weight: bold; /* Make the custom bullet bold */
+        }
+        .table-container {
+            overflow-x: auto; /* Added to allow horizontal scrolling */
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Added to prevent side scrolling */
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            word-wrap: break-word; /* Added to wrap long text inside cells */
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .red-text {
+            font-size: 58px;
+        }
+    </style>
     
 </head>
 <body>
@@ -52,8 +115,8 @@
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
                                     <a href="/">
-                                        CAP LOGO
-                                        {% comment %} <img src="{% static 'assets/img/logo/logo' %}" alt=""> {% endcomment %}
+                                        {% comment %} CAP LOGO {% endcomment %}
+                                        <img src="{% static 'assets/img/logo/caplogo.png' %}" alt="">
                                     </a>
                                 </div>
                             </div>
@@ -66,7 +129,7 @@
                                                 <li><a href="/">Home</a></li>
                                                 <li><a href="{% url 'accreditors:about' %}">About CAP</a>
                                                     <ul class="submenu">
-                                                        <li><a href="#">Resources</a></li>
+                                                        <li><a href="{% url 'accreditors:download_document' %}">Resources</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>
@@ -119,7 +182,7 @@
                                 <!-- logo -->
                                 <div class="footer-logo mb-25">
                                     <a href="/">
-                                        <img src="#" alt="Footer Logo">
+                                        <img src="{% static 'assets/img/logo/caplogo.png' %}" alt="Footer Logo">
                                     </a>
                                 </div>
                                 
@@ -127,7 +190,6 @@
                                 <div class="footer-social mt-50">
                                     <a href="#"><i class="fab fa-twitter"></i></a>
                                     <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -150,13 +212,13 @@
                             <div class="single-footer-caption mb-50">
                                 <div class="footer-tittle">
                                     <h4>Quick link</h4>
-                                    {% comment %} <ul>
-                                        <li><a href="#">Why choose us</a></li>
-                                        <li><a href="#"> Review</a></li>
+                                    <ul>
+                                        <li><a href="{% url 'accreditors:privacy' %}">Privacy Policy</a></li>
+                                        {% comment %} <li><a href="#"> Review</a></li>
                                         <li><a href="#">Customers</a></li>
                                         <li><a href="#">Blog</a></li>
-                                        <li><a href="#">Carrier</a></li>
-                                    </ul> {% endcomment %}
+                                        <li><a href="#">Carrier</a></li> {% endcomment %}
+                                    </ul>
                                 </div>
                             </div>
                         </div>

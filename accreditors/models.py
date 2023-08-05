@@ -39,10 +39,10 @@ class Accreditor(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='accreditor')
     accreditor_code = models.CharField(max_length=20, unique=True)
-    category = models.OneToOneField(Category, on_delete=models.CASCADE, null=True, blank=True)
-    contact_number = models.CharField(max_length=20, null=True, blank=True)
-    contact_email = models.CharField(max_length=100, null=True, blank=True)
-    contact_address = models.CharField(max_length=200, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    contact_number = models.CharField(max_length=20)
+    contact_email = models.CharField(max_length=100)
+    contact_address = models.CharField(max_length=200)
     expression_doc = models.FileField(upload_to='media/expression_doc', validators=[FileExtensionValidator(['pdf'])], null=True, blank=True)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -56,7 +56,7 @@ class Accreditor(models.Model):
     
     def _generate_accreditor_code(self):
         current_year = timezone.now().year % 100
-        return f"CPA-{current_year:02d}"
+        return f"CAP-{current_year:02d}"
 
     def save(self, *args, **kwargs):
         if not self.accreditor_code:
@@ -108,7 +108,7 @@ class Application(models.Model):
     lasrra = models.FileField(upload_to='media/lasrra', validators=[FileExtensionValidator(['pdf'])])
     reg_certificate = models.FileField(upload_to='media/reg_certificate', validators=[FileExtensionValidator(['pdf'])])
     curr_license = models.FileField(upload_to='media/curr_license', validators=[FileExtensionValidator(['pdf'])])
-    pro_certificate = models.FileField(upload_to='media/pro_certificate', validators=[FileExtensionValidator(['pdf'])])
+    pro_certificate = models.FileField(upload_to='media/resume', validators=[FileExtensionValidator(['pdf'])])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -123,4 +123,4 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.accreditor.group_name}"
+        return f"{self.reviewer}"

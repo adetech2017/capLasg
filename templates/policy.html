@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+{% static "images" as baseUrl %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <!-- Slider Area Start-->
+    <div class="slider-area slider-bg ">
+        <!-- Single Slider -->
+        <div class="single-slider d-flex align-items-center slider-height3">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-xl-8 col-lg-9 col-md-12 ">
+                        <div class="hero__caption hero__caption3 text-center">
+                            <h1 data-animation="fadeInLeft" data-delay=".6s ">Privacy Policy</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <!-- Slider Shape -->
+        <div class="slider-shape d-none d-lg-block">
+            <img class="slider-shape1" src="{% static 'assets/img/hero/top-left-shape.png' %}" alt="">
+        </div>
+    </div>
+    <!-- Slider Area End -->
+    <!-- ask questions -->
+    <section class="ask-questions section-padding40 fix">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-8 col-lg-9 col-md-10 ">
+                    <!-- Section Tittle -->
+                    <div class="section-tittle section-tittle2 text-center mb-90">
+                        <h2>Privacy Policy</h2>
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+    
+    
+                    <h1>Privacy Policy for CAP Web App</h1>
+                    <p><strong>Effective Date:</strong> 05-08-2023</p>
+                    <h2>1. Introduction</h2>
+                    <p>Welcome to CAP Web App. This Privacy Policy outlines how we collect, use, disclose, and protect
+                        your personal data when you use our services. The protection of your personal information is of utmost
+                        importance to us. By using the App, you consent to the practices described in this Privacy Policy.</p>
+
+                    <h2>2. Information We Collect</h2>
+                    <p>We may collect the following types of personal data when you use the App:</p>
+                    <ul>
+                        <li>2.1. Information You Provide: When you sign up for an account or use certain features of the App, we may ask
+                            you to provide personal information such as your name, email address, contact details, and other
+                            information that you voluntarily submit.</li>
+                        <li>2.2. Verification Data: In order to enhance the security and verification process, we may collect additional
+                            information for user verification purposes. This may include government-issued identification documents,
+                            date of birth, and other relevant data.</li>
+                        <li>2.3. App Usage Information: We may collect data related to your interactions with the App, including log
+                            files, IP addresses, browser type, and other information about your device and usage patterns.</li>
+                    </ul>
+
+                    <h2>3. How We Use Your Information</h2>
+                    <p>We use your personal data for the following purposes:</p>
+                    <ul>
+                        <li>3.1. Account Creation and Verification: To create and manage your account, as well as to verify your
+                            identity for security purposes.</li>
+                        <li>3.2. App Functionality: To provide you with access to the features and functionality of the App, including
+                            personalized services.</li>
+                        <li>3.3. Communication: To communicate with you regarding updates, announcements, and other relevant
+                            information about the App.</li>
+                        <li>3.4. Improvements: To analyze and improve the performance, functionality, and user experience of the
+                            App.</li>
+                        <li>3.5. Legal Obligations: To comply with applicable laws, regulations, and legal processes.</li>
+                    </ul>
+
+                    <h2>4. Sharing Your Information</h2>
+                    <p>We may share your personal data under the following circumstances:</p>
+                    <ul>
+                        <li>4.1. Service Providers: We may engage third-party service providers to assist us in operating the App and
+                            perform related services. These providers may have access to your personal information but are obligated
+                            to protect its confidentiality and use it only for specific purposes.</li>
+                        <li>4.2. Compliance and Safety: We may disclose your personal data if required by law or if we believe in good
+                            faith that such disclosure is necessary to protect our rights, safety, or the rights and safety of
+                            others.</li>
+                    </ul>
+
+                    <h2>5. Security</h2>
+                    <p>We take appropriate measures to protect your personal data from unauthorized access, alteration, disclosure,
+                        or destruction. However, no method of transmission over the internet or electronic storage is entirely
+                        secure, and we cannot guarantee absolute security.</p>
+
+                    <h2>6. Data Retention</h2>
+                    <p>We will retain your personal data for as long as necessary to fulfill the purposes outlined in this Privacy
+                        Policy, unless a longer retention period is required or permitted by law.</p>
+
+                    <h2>7. Your Rights</h2>
+                    <p>You have the right to access, update, correct, or delete your personal data at any time. You can exercise
+                        these rights by contacting us through the contact information provided at the end of this Privacy Policy.</p>
+
+                    <h2>8. Children's Privacy</h2>
+                    <p>The App is not intended for use by individuals under the age of [minimum age required by applicable laws]. We
+                        do not knowingly collect personal data from children without parental consent. If you believe we have
+                        collected personal data from a child without proper consent, please contact us immediately.</p>
+
+                    <h2>9. Changes to this Privacy Policy</h2>
+                    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with a revised
+                        "Effective Date." We encourage you to review this Privacy Policy periodically.</p>
+
+                    <h2>10. Contact Us</h2>
+                    <p>If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us at:</p>
+                    <p>capmppud@lagosstate.gov.ng & +234-802-462-6092</p>
+
+                    <p>By using the CAP Web App, you agree to the terms of this Privacy Policy.</p>
+                    <p>Thank you</p>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock content %}

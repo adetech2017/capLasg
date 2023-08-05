@@ -1,0 +1,49 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+    
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ accreditor_form.as_p }}
+
+    <h2>Application Form</h2>
+    <div id="formset">
+        {{ application_formset.management_form }}
+        {% for application_form in application_formset %}
+            {{ application_form.as_p }}
+            {% if application_form.instance.pk %}
+                <input type="checkbox" name="{{ application_form.prefix }}-DELETE" id="{{ application_form.prefix }}-DELETE">
+                <label for="{{ application_form.prefix }}-DELETE">Delete this application</label>
+            {% endif %}
+            <hr>
+        {% endfor %}
+    </div>
+
+    <button type="submit" name="save">Save</button>
+    <button type="submit" name="save_and_continue">Add Another with Save and Continue</button>
+    <button type="button" id="add-application">Add Application</button>
+</form>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var form_idx = $('#id_application_set-TOTAL_FORMS').val();
+        $('#add-application').on('click', function(e) {
+            e.preventDefault();
+            $('#formset').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+            $('#id_application_set-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+            form_idx++;
+        });
+    });
+</script>
+
+<div id="empty_form" style="display: none;">
+    {{ application_formset.empty_form.as_p }}
+</div>
+
+    
+
+
+{% endblock %}

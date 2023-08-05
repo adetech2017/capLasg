@@ -1,19 +1,26 @@
 from django.shortcuts import render, redirect
 #from .models import Application, Accreditor, Status
-from .forms import AccreditorForm, ApplicationForm, AccreditorApplicationFormSet
+from .forms import AccreditorForm, ApplicationForm, AccreditorApplicationFormSet, AccreditorApplicationForm, ApplicationFormSet
 from core.models import Category, Status
 from django.contrib.auth import login, authenticate
-from .forms import UserRegistrationForm, CustomLoginForm
+from .forms import UserRegistrationForm, CustomLoginForm, MyApplicationFormSet, MyApplicationForm
 from core.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 from django.contrib.auth import logout
-from .models import Accreditor
+from .models import Accreditor, Category
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 import logging
 from django.contrib.auth.decorators import login_required
 from .models import Application
+from django.http import FileResponse, HttpResponse
+from django.conf import settings
+import os
+from django.utils import timezone
+from datetime import datetime
+
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 logger = logging.getLogger(__name__)
 
@@ -30,6 +37,10 @@ def about(request):
 def help(request):
     return render(request, "help.html")
 
+def policy(request):
+    return render(request, "policy.html")
+
+@login_required
 def home(request):
     # Get the current authenticated Accreditor
     accreditor = Accreditor.objects.filter(user=request.user).first()
@@ -66,7 +77,6 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
-
 def register(request):
     if request.method == 'POST':
         user_form = UserRegistrationForm(request.POST)
@@ -95,8 +105,7 @@ def logout_view(request):
     logout(request)
     return redirect('accreditors:index')
 
-
-
+@login_required
 def application_form_view(request):
     if request.method == 'POST':
         form = ApplicationForm(request.POST, request.FILES)
@@ -176,3 +185,272 @@ def accreditor_application_create_view(request):
         formset = [ApplicationForm(prefix=str(i)) for i in range(3)]  # Change 3 to the number of initial forms you want
 
     return render(request, 'dashboard/application_form.html', {'accreditor_form': accreditor_form, 'formset': formset})
+
+
+def download_document(request):
+    document_path = os.path.join(settings.STATICFILES_DIRS[0], 'cap-lag.pdf')
+    if os.path.exists(document_path):
+        with open(document_path, 'rb') as document_file:
+            response = HttpResponse(document_file.read(), content_type='application/pdf')
+            response['Content-Disposition'] = 'attachment; filename="cap-lag.pdf"'
+            return response
+    else:
+        return HttpResponse('Document not found', status=404)
+    
+
+class MyFormView(View):
+    def get(self, request):
+        user = request.user
+        accreditor = Accreditor.objects.filter(user=user).first()  # Fetch the Accreditor object for the current authenticated user, if it exists
+
+        accreditor_form = AccreditorForm(instance=accreditor) if accreditor else AccreditorForm()
+        application_formset = MyApplicationFormSet()
+        return render(request, 'dashboard/my_template.html', {'accreditor_form': accreditor_form, 'application_formset': application_formset})
+    
+    
+    def post(self, request):
+        user = request.user
+
+        accreditor_form = AccreditorForm(request.POST, request.FILES)
+        application_formset = MyApplicationFormSet(request.POST, request.FILES)
+
+        if 'save' in request.POST and accreditor_form.is_valid() and application_formset.is_valid():
+            user_id = request.POST.get('user_id', None)
+            accreditor_id = request.POST.get('accreditor_id', None)
+
+            if accreditor_id:
+                # Fetch the Accreditor object based on the accreditor_id (primary key)
+                accreditor, created = Accreditor.objects.get_or_create(pk=accreditor_id)
+                accreditor_form = AccreditorForm(request.POST, request.FILES, instance=accreditor, exclude=['category'])
+                accreditor.user = user
+            else:
+                # If accreditor_id does not exist, create a new Accreditor
+                accreditor = accreditor_form.save(commit=False)
+                accreditor.user = user
+
+            # Set the created_at and updated_at fields for the accreditor
+            accreditor.created_at = accreditor_form.cleaned_data.get('created_at') or datetime.now()
+            accreditor.updated_at = datetime.now()
+            accreditor.save()
+
+            for application_form in application_formset:
+                if application_form.is_valid():
+                    application = application_form.save(commit=False)
+
+                    if not application.accreditor:
+                        # Link the application to the corresponding accreditor if not already linked
+                        application.accreditor = accreditor
+
+                    # Save existing accreditor_id to the Application object
+                    if user_id:
+                        application.existing_accreditor_id = user_id
+
+                    application.created_at = application_form.cleaned_data.get('created_at') or datetime.now()
+                    application.updated_at = datetime.now()
+                    application.save()
+
+            # Redirect to a success page or do something else after saving
+
+        elif 'add_application' in request.POST:
+            if accreditor_id:
+                # Fetch the Accreditor object based on the accreditor_id (primary key)
+                accreditor, created = Accreditor.objects.get_or_create(pk=accreditor_id)
+                accreditor_form = AccreditorForm(request.POST, request.FILES, instance=accreditor, exclude=['category'])
+                accreditor.user = user
+            else:
+                # If accreditor_id does not exist, create a new Accreditor
+                accreditor = accreditor_form.save(commit=False)
+                accreditor.user = user
+
+            # Set the created_at and updated_at fields for the accreditor
+            accreditor.created_at = accreditor_form.cleaned_data.get('created_at') or datetime.now()
+            accreditor.updated_at = datetime.now()
+            accreditor.save()
+
+            # Add another empty application form to the formset
+            application_formset = MyApplicationFormSet(request.POST, request.FILES)
+
+            # Check if the formset is valid, and if so, add the form to the formset
+            if application_formset.is_valid():
+                application_formset.forms.append(MyApplicationForm())
+
+        else:
+            # Handle other cases (e.g., 'save_and_continue' button)
+            pass
+
+        return render(request, 'dashboard/my_template.html', {
+            'accreditor_form': accreditor_form,
+            'application_formset': application_formset,
+            'accreditor_id': accreditor.id  # Include the accreditor_id in the context
+        })
+
+    # def post(self, request):
+    #     user = request.user
+        
+    #     accreditor_form = AccreditorForm(request.POST, request.FILES)
+    #     application_formset = MyApplicationFormSet(request.POST, request.FILES)
+
+    #     if 'save' in request.POST and accreditor_form.is_valid() and application_formset.is_valid():
+    #         user_id = request.POST.get('user_id', None)
+    #         accreditor_id = request.POST.get('accreditor_id', None)
+
+    #         # Check if user_id exists to update the AccreditorForm
+    #         if user_id:
+    #             accreditor = Accreditor.objects.get(pk=user_id)
+    #             accreditor_form = AccreditorForm(request.POST, request.FILES, instance=accreditor)
+    #         else:
+    #             accreditor = accreditor_form.save(commit=False)
+
+    #         # Add user to the Accreditor object
+    #         accreditor.user = user
+
+    #         accreditor_form.save()
+
+    #         for application_form in application_formset:
+    #             if application_form.is_valid():
+    #                 application = application_form.save(commit=False)
+    #                 application.accreditor = accreditor  # Link the application to the corresponding accreditor
+    #                 application.save()
+
+    #         # Redirect to a success page or do something else after saving
+
+    #     elif 'add_application' in request.POST:  # Handle adding a new application form
+    #         # Save the existing accreditor data (if applicable)
+    #         user_id = request.POST.get('user_id', None)
+    #         accreditor_id = request.POST.get('accreditor_id', None)
+    #         if user_id:
+    #             accreditor = Accreditor.objects.get(pk=user_id)
+    #             accreditor_form = AccreditorForm(request.POST, request.FILES, instance=accreditor)
+    #             accreditor_form.save()
+    #         else:
+    #             accreditor = accreditor_form.save()
+
+    #         # Add another empty application form to the formset
+    #         application_formset = MyApplicationFormSet(request.POST, request.FILES)
+
+    #         # Check if the formset is valid, and if so, add the form to the formset
+    #         if application_formset.is_valid():
+    #             application_formset.forms.append(MyApplicationForm())
+    #     else:
+    #         # Handle other cases (e.g., 'save_and_continue' button)
+    #         pass
+
+        
+
+
+
+
+
+
+
+
+# class MyFormView(View):
+#     def get(self, request):
+#         accreditor = Accreditor.objects.filter(user=request.user).first()
+#         applications = Application.objects.filter(accreditor=accreditor) if accreditor else None
+#         form = AccreditorForm(accreditor=accreditor)
+#         #formset = ApplicationFormSet(queryset=applications)
+#         context = {'form': form}
+#         return render(request, 'dashboard/my_template.html', context)
+    
+#     # def get(self, request):
+#     #     category_name = request.GET.get('category', None)
+#     #     accreditor = Accreditor.objects.filter(user=request.user).first()
+
+#     #     if request.user.is_authenticated:
+#     #         try:
+#     #             category = Category.objects.get(category=category_name)
+#     #             accreditor = Accreditor.objects.get(user=request.user, category=category)
+#     #             accreditor_form = AccreditorForm(instance=accreditor)
+#     #         except (Category.DoesNotExist, Accreditor.DoesNotExist):
+#     #             accreditor = None
+#     #             accreditor_form = AccreditorForm(initial={'category': category_name})
+#     #     else:
+#     #         accreditor = None
+#     #         accreditor_form = AccreditorForm(initial={'category': category_name})
+
+#     #     application_formset = MyApplicationFormSet()
+#     #     return render(request, 'dashboard/my_template.html', {'accreditor_form': accreditor_form, 'application_formset': application_formset})
+
+#     def post(self, request):
+#         if not request.user.is_authenticated:
+#             return redirect('login')  # Redirect to the login page if the user is not authenticated
+
+#         category_name = request.POST.get('category', None)
+#         try:
+#             category = Category.objects.get(category=category_name)
+#             accreditor = Accreditor.objects.get(user=request.user, category=category)
+#         except (Category.DoesNotExist, Accreditor.DoesNotExist):
+#             accreditor = None
+
+#         if accreditor:
+#             # Disable the category field in the form to prevent updating
+#             accreditor_form = AccreditorForm(request.POST, request.FILES, instance=accreditor, disable_category=True)
+#         else:
+#             # Create a new form with the category_name provided
+#             accreditor_form = AccreditorForm(request.POST, request.FILES)
+
+#         application_formset = MyApplicationFormSet(request.POST, request.FILES)
+
+#         if 'save' in request.POST and accreditor_form.is_valid() and application_formset.is_valid():
+#             if not accreditor:
+#                 accreditor = accreditor_form.save(commit=False)
+#                 accreditor.user = request.user
+#                 accreditor.category = category
+#                 accreditor.save()
+
+#             for application_form in application_formset:
+#                 if application_form.is_valid() and not application_form.cleaned_data.get('DELETE'):
+#                     application = application_form.save(commit=False)
+#                     application.accreditor = accreditor
+#                     application.save()
+
+#             # Check if "Save and Continue" button is clicked
+#             if 'save_and_continue' in request.POST:
+#                 # Create a new formset with an empty form for the next entry
+#                 application_formset = MyApplicationFormSet()
+#             else:
+#                 # Redirect to a success page or do something else after saving
+#                 return redirect('success_page')  # Replace 'success_page' with your desired URL name
+
+#         return render(request, 'dashboard/my_template.html', {'accreditor_form': accreditor_form, 'application_formset': application_formset})
+    
+    
+    
+    
+
+
+
+class AddAccreditorApplicationView(LoginRequiredMixin, View):
+    def get(self, request):
+        accreditor = Accreditor.objects.filter(user=request.user).first()
+        applications = Application.objects.filter(accreditor=accreditor) if accreditor else None
+
+        # Pass instance to AccreditorApplicationForm to display existing details
+        form = AccreditorApplicationForm(accreditor=accreditor)
+        formset = ApplicationFormSet(queryset=applications)
+        context = {'form': form, 'formset': formset}
+        return render(request, 'dashboard/add_accreditor_application.html', context)
+
+    def post(self, request):
+        accreditor = Accreditor.objects.filter(user=request.user).first()
+        form = AccreditorApplicationForm(request.POST, request.FILES, accreditor=accreditor)
+        formset = ApplicationFormSet(request.POST, request.FILES)
+
+        if form.is_valid() and formset.is_valid():
+            if not accreditor:
+                accreditor = form.save(commit=False)
+                accreditor.user = request.user
+                accreditor.save()
+
+            form.save()  # Save accreditor details
+
+            for form in formset:
+                application = form.save(commit=False)
+                application.accreditor = accreditor
+                application.save()
+
+            return redirect('applications_list')  # Redirect to a list view of applications
+
+        context = {'form': form, 'formset': formset}
+        return render(request, 'dashboard/add_accreditor_application.html', context)
