@@ -86,7 +86,7 @@ class Application(models.Model):
         ('none', 'None'),
         ('architect', 'Architect'),
         ('Town Planner', 'Town Planner'),
-        ('structure engineer', 'Structure Engineer'),
+        ('civil/structural engineer', 'Civil/Structural Engineer'),
         ('mechanical engineer', 'Mechanical Engineer'),
         ('electrical engineer', 'Electrical Engineer'),
         ('builder', 'Builder'),
