@@ -6,6 +6,7 @@ from django.contrib.auth.admin import UserAdmin
 
 # Register your models here.
 admin.site.site_header = "CAPMPPUD-LASG"
+admin.site.site_title = 'CAPMPPUD-LASG'
 
 admin.site.register(Status)
 admin.site.register(Category)

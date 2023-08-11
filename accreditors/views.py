@@ -51,6 +51,18 @@ def help(request):
 def policy(request):
     return render(request, "policy.html")
 
+def grade_a(request):
+    return render(request, "grade_1_details.html")
+
+def grade_b(request):
+    return render(request, "grade_2_details.html")
+
+def grade_c(request):
+    return render(request, "grade_3_details.html")
+
+def grade_d(request):
+    return render(request, "grade_4_details.html")
+
 @login_required
 def home(request):
     # Get the current authenticated Accreditor
