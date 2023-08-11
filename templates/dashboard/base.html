@@ -8,8 +8,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Dashboad CPA - Lagos State</title>
-    <meta name="description" content="CPA - Lagos State">
+    <title>Dashboad CAP - Lagos State</title>
+    <meta name="description" content="CAP - Lagos State">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="{% static 'assets/img/logo/resieCap1.jpeg' %}">
@@ -29,6 +29,9 @@
 
     <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
+    <!-- Include SweetAlert CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+
 
     <style>
         #weatherWidget .currentDesc {
@@ -80,7 +83,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'accreditors:application_create' %}">
+                        <a href="{% url 'accreditors:create_accreditor_application' %}">
                             <i class="menu-icon ti-email"></i>Application
                         </a>
                     </li>
@@ -159,10 +162,11 @@
     <!-- /#right-panel -->
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
 
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.4/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
@@ -188,6 +192,70 @@
 
 
     {% comment %} <script>
+        $(document).ready(function() {
+            $('#submit-forms').click(function() {
+                event.preventDefault(); 
+                console.log('Submit button clicked');
+
+                var accreditorForm = $('#accreditor-form');
+                var applicationForms = $('.application-form');
+
+                // Check if any required fields or file inputs are empty
+                if (accreditorForm.find(':required').filter(function() { return $(this).val() === ''; }).length > 0 ||
+                    applicationForms.find(':required').filter(function() { return $(this).val() === ''; }).length > 0) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Please fill in all required fields and select files.',
+                        icon: 'error'
+                    });
+                    return;  // Exit the function without submitting the form
+                }
+                
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "accreditors:create_accreditor_application" %}',
+                    data: accreditorForm.serialize() + '&' + applicationForms.serialize(),
+                    success: function(data) {
+                        if (data.success) {
+                            Swal.fire({
+                                title: 'Success!',
+                                text: data.message,
+                                icon: 'success',
+                                timer: 2000,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            Swal.fire({
+                                title: 'Error!',
+                                text: data.message,
+                                icon: 'error'
+                            });
+                        }
+                    },
+                    error: function() {
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'An error occurred while processing your request.',
+                            icon: 'error'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#test-button').click(function() {
+                Swal.fire({
+                    title: 'Test SweetAlert',
+                    text: 'This is a test SweetAlert message.',
+                    icon: 'success'
+                });
+            });
+        });
+        </script> {% endcomment %}
+        
+    {% comment %} <script>
         document.addEventListener("DOMContentLoaded", function() {
             const addButton = document.getElementById("add-application");
             const formsetDiv = document.getElementById("formset");
@@ -205,11 +273,12 @@
             });
         });
     </script>  {% endcomment %}
-    <script>
+    {% comment %} <script>
         let appForm = document.querySelectorAll(".app-form")
         let container = document.querySelector("#app-formset")
         let addButton = document.querySelector("#add-application")
         let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
-    </script>
+    </script> {% endcomment %}
+
 </body>
 </html>

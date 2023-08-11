@@ -102,6 +102,8 @@
                             <button type="button" id="add-application">Add Another Application</button>
                             <button type="submit">Save</button> {% endcomment %}
                         </form>
+
+                        
                     </div>
                 </div>
             </div>
@@ -109,21 +111,7 @@
     </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        var form_idx = $('#id_application_set-TOTAL_FORMS').val();
-        $('#add-application').on('click', function(e) {
-            e.preventDefault();
-            $('#formset').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
-            $('#id_application_set-TOTAL_FORMS').val(parseInt(form_idx) + 1);
-            form_idx++;
-        });
-    });
-</script>
 
-<div id="empty_form" style="display: none;">
-    {{ application_formset.empty_form.as_p }}
-</div>
 
 
 {% endblock %}

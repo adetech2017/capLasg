@@ -28,9 +28,11 @@
     <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
 
     <style>
+        /* Common styles for both mobile and desktop */
+
         /* Override styles for the ordered list with the custom class "custom-ol" */
         .custom-ol {
-            list-style-type: none; /* Remove default numbering */
+            
             padding-left: 20px; /* Add some left padding */
         }
 
@@ -65,6 +67,7 @@
             color: #007bff; /* Set the color of the custom bullet (blue in this case) */
             font-weight: bold; /* Make the custom bullet bold */
         }
+
         .table-container {
             overflow-x: auto; /* Added to allow horizontal scrolling */
         }
@@ -85,8 +88,37 @@
         th {
             background-color: #f2f2f2;
         }
-        .red-text {
-            font-size: 58px;
+
+        /* Media Queries for specific devices */
+
+        /* Mobile devices */
+        @media only screen and (max-width: 767px) {
+            /* Override styles for ordered list and unordered list */
+            .custom-ol li::before {
+                content: counter(list-counter) ". "; /* Use regular numbering for mobile */
+            }
+
+            .custom-ul li::before {
+                content: "\2022"; /* Use custom bullet for mobile */
+            }
+
+            /* Adjust font size for the red-text class */
+            .red-text {
+                font-size: 34px;
+            }
+        }
+
+        /* Tablets and small desktops */
+        @media only screen and (min-width: 768px) and (max-width: 1023px) {
+            /* Adjust font size for the red-text class */
+            .red-text {
+                font-size: 46px;
+            }
+        }
+
+        /* Large desktops and beyond */
+        @media only screen and (min-width: 1024px) {
+            /* No additional styles needed for large desktops and beyond */
         }
     </style>
     

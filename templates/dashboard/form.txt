@@ -1,0 +1,186 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% load crispy_forms_tags%}
+
+{% block content %}
+
+<div class="breadcrumbs">
+  <div class="breadcrumbs-inner">
+      <div class="row m-0">
+          <div class="col-sm-4">
+              <div class="page-header float-left">
+                  <div class="page-title">
+                      <h1>Accreditor Application Form</h1>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="content">
+  <div class="animated fadeIn">
+      <div class="row">
+          <div class="col-lg-12">
+              <div class="card">
+                  <div class="card-header">
+                      <strong class="card-title">Accreditor Section</strong>
+                  </div>
+                  <div class="card-body">
+
+                    <form method="post" enctype="multipart/form-data">
+                      <div class="row">
+                        {% csrf_token %}
+                        {% if accreditor_id %}
+                            <input type="hidden" name="accreditor_id" value="{{ accreditor_id }}">
+                        {% endif %}
+
+                        {% if accreditor_id %}
+                          <!-- If accreditor_id exists, display the accreditor form fields as disabled -->
+                          {% for field in accreditor_form %}
+                            {% if field.name == 'category' or field.name == 'contact_number' or field.name == 'contact_email' or field.name == 'contact_address' %}
+                              <div class="col-md-4">
+                                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                {% if field.field.widget.input_type == 'checkbox' %}
+                                  <div class="form-check">
+                                    <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" class="form-check-input" {% if field.value %}checked{% endif %} disabled>
+                                    <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                  </div>
+                                {% else %}
+                                  {% if field.value %}
+                                    <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" value="{{ field.value }}" class="form-control" disabled>
+                                  {% else %}
+                                    {{ field }}
+                                  {% endif %}
+                                {% endif %}
+                              </div>
+                            {% endif %}
+                          {% endfor %}
+                        {% else %}
+                          <!-- If accreditor_id does not exist, render the accreditor form fields normally -->
+                          <div class="col-md-4">
+                            {{ accreditor_form.category|as_crispy_field }}
+                          </div>
+                          <div class="col-md-4">
+                            {{ accreditor_form.contact_number|as_crispy_field }}
+                          </div>
+                          <div class="col-md-4">
+                            {{ accreditor_form.contact_email|as_crispy_field }}
+                          </div>
+                          <div class="col-md-6">
+                            {{ accreditor_form.contact_address|as_crispy_field }}
+                          </div>
+                        {% endif %}
+                      </div>
+
+                      <hr />
+
+                      <h2>Application Form</h2>
+                      <div id="formset">
+                          {{ application_formset.management_form }}
+                          <div class="row">
+                            {% for application_form in application_formset %}
+                            
+                              <div class="col-md-4">
+                                {{ application_form.full_name|as_crispy_field }}
+                              </div>
+                              <div class="col-md-4">
+                                  {{ application_form.reg_body_no|as_crispy_field }}
+                              </div>
+                              <div class="col-md-3">
+                                  {{ application_form.position|as_crispy_field }}
+                              </div>
+                              <div class="col-md-4">
+                                  {{ application_form.profession|as_crispy_field }}
+                              </div>
+                              <div class="col-md-4">
+                                {{ application_form.lasrra_number|as_crispy_field }}
+                              </div>
+
+                              <div class="col-md-4">
+                                  {{ application_form.passport_photo|as_crispy_field }}
+                              </div>
+                              <div class="col-md-4">
+                                  {{ application_form.curr_license|as_crispy_field }}
+                              </div>
+                              <div class="col-md-4">
+                                  {{ application_form.reg_certificate|as_crispy_field }}
+                              </div>
+                              <div class="col-md-4">
+                                  {{ application_form.pro_certificate|as_crispy_field }}
+                              </div>
+                                {% comment %} {{ application_form.as_p }} {% endcomment %}
+                                {% if application_form.instance.pk %}
+                                    <input type="checkbox" name="{{ application_form.prefix }}-DELETE" id="{{ application_form.prefix }}-DELETE">
+                                    <label for="{{ application_form.prefix }}-DELETE">Delete this application</label>
+                                {% endif %}
+                            
+                            {% endfor %}
+                          </div>
+                        </div>
+                        <div class="card-body">
+                          <button type="submit" name="save" class="btn btn-info">Submit Application</button>
+                          {% comment %} <button type="submit" name="save_and_continue">Add Another with Save and Continue</button> {% endcomment %}
+                          <button type="button" id="add-application" class="btn btn-primary">Add More Application Form</button>
+                        </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        var form_idx = $('#id_application_set-TOTAL_FORMS').val();
+        $('#add-application').on('click', function(e) {
+            e.preventDefault();
+            $('#formset').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+            $('#id_application_set-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+            form_idx++;
+        });
+    });
+</script>
+
+<div id="empty_form" style="display: none;">
+  <hr />
+  {% comment %} {{ application_formset.empty_form.as_p }} {% endcomment %}
+  <div class="row">
+    <div class="col-md-4">
+      {{ application_formset.empty_form.full_name|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+        {{ application_formset.empty_form.reg_body_no|as_crispy_field }}
+    </div>
+    <div class="col-md-3">
+        {{ application_formset.empty_form.position|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+        {{ application_formset.empty_form.profession|as_crispy_field }}
+    </div>
+
+    <div class="col-md-4">
+        {{ application_formset.empty_form.passport_photo|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+        {{ application_formset.empty_form.curr_license|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+        {{ application_formset.empty_form.reg_certificate|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+        {{ application_formset.empty_form.pro_certificate|as_crispy_field }}
+    </div>
+  </div>
+</div>
+
+    
+
+
+{% endblock %}

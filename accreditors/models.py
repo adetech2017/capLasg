@@ -101,16 +101,17 @@ class Application(models.Model):
     accreditor = models.ForeignKey(Accreditor, related_name='applications', on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE, default=1)
     full_name = models.CharField(max_length=100)
-    reg_body_no = models.CharField(max_length=50)
+    #reg_body_no = models.CharField(max_length=50)
     #years_of_experience = models.PositiveIntegerField(default=0)
     position = models.CharField(max_length=50, choices=TEAM_TYPE_CHOICES, default='member')
     profession = models.CharField(max_length=50, choices=PRO_TYPE_CHOICES, default='none')
-    lasrra = models.FileField(upload_to='media/lasrra', validators=[FileExtensionValidator(['pdf'])])
+    means_of_identity = models.FileField(upload_to='media/identity', default='default.jpg')
     reg_certificate = models.FileField(upload_to='media/reg_certificate', validators=[FileExtensionValidator(['pdf'])])
     curr_license = models.FileField(upload_to='media/curr_license', validators=[FileExtensionValidator(['pdf'])])
-    pro_certificate = models.FileField(upload_to='media/resume', validators=[FileExtensionValidator(['pdf'])])
+    resume = models.FileField(upload_to='media/resume', validators=[FileExtensionValidator(['pdf'])])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    passport_photo = models.FileField(upload_to='media/photo', blank=True, null=True, default='default.jpg')
 
     def __str__(self):
         return self.full_name

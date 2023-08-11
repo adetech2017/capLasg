@@ -25,4 +25,7 @@ urlpatterns = [
     path('dashboard/my_form', MyFormView.as_view(), name='my_form_view_name'),
     
     path('dashboard/add_accreditor_application/', AddAccreditorApplicationView.as_view(), name='add_accreditor_application'),
+    
+    path('dashboard/test-app', views.create_accreditor_and_applications, name='create_accreditor_application'),
+
 ]

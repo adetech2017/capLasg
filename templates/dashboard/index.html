@@ -94,6 +94,13 @@
                             <h4 class="box-title">My Applications </h4>
                         </div>
                         <div class="card-body--">
+                            {% if messages %}
+                                <ul class="messages">
+                                    {% for message in messages %}
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
                             <div class="table-stats order-table ov-h">
                                 {% if applications %}
                                     <table class="table ">
@@ -101,7 +108,6 @@
                                             <tr>
                                                 <th class="serial">#</th>
                                                 <th>Full Name</th>
-                                                <th>Reg. Number</th>
                                                 <th>Position</th>
                                                 <th>Profession</th>
                                                 <th>Status</th>
@@ -112,9 +118,8 @@
                                                 <tr>
                                                     <td class="serial">{{ forloop.counter }}.</td>
                                                     <td> {{ application.full_name }} </td>
-                                                    <td>  <span class="name">{{ application.reg_body_no }}</span> </td>
                                                     <td> {{ application.get_position_display }}</span> </td>
-                                                    <td>{{ application.get_profession_display }}</td>
+                                                    <td> {{ application.get_profession_display }}</td>
                                                     <td>
                                                         <span class="badge badge-pending">{{ application.status }}</span>
                                                     </td>

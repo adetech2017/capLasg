@@ -6,7 +6,46 @@
     
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ accreditor_form.as_p }}
+    {% if accreditor_id %}
+        <input type="hidden" name="accreditor_id" value="{{ accreditor_id }}">
+    {% endif %}
+
+    {% if accreditor_id %}
+    <!-- If accreditor_id exists, display the accreditor form fields as disabled -->
+    {% for field in accreditor_form %}
+    {% if field.name == 'category' or field.name == 'contact_number' or field.name == 'contact_email' or field.name == 'contact_address' %}
+        <div class="col-md-4">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {% if field.field.widget.input_type == 'checkbox' %}
+            <div class="form-check">
+              <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" class="form-check-input" {% if field.value %}checked{% endif %} disabled>
+              <label class="form-check-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+            </div>
+          {% else %}
+            {% if field.value %}
+              <input type="{{ field.field.widget.input_type }}" name="{{ field.html_name }}" value="{{ field.value }}" class="form-control" disabled>
+            {% else %}
+              {{ field }}
+            {% endif %}
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    <!-- If accreditor_id does not exist, render the accreditor form fields normally -->
+    <div class="col-md-4">
+      {{ accreditor_form.category|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+      {{ accreditor_form.contact_number|as_crispy_field }}
+    </div>
+    <div class="col-md-4">
+      {{ accreditor_form.contact_email|as_crispy_field }}
+    </div>
+    <div class="col-md-6">
+      {{ accreditor_form.contact_address|as_crispy_field }}
+    </div>
+  {% endif %}
 
     <h2>Application Form</h2>
     <div id="formset">
@@ -23,8 +62,9 @@
 
     <button type="submit" name="save">Save</button>
     <button type="submit" name="save_and_continue">Add Another with Save and Continue</button>
-    <button type="button" id="add-application">Add Application</button>
+    <button type="button" id="add-application">Add More Application Form</button>
 </form>
+
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
