@@ -161,7 +161,8 @@
                                                 <li><a href="/">Home</a></li>
                                                 <li><a href="{% url 'accreditors:about' %}">About CAP</a>
                                                     <ul class="submenu">
-                                                        <li><a href="{% url 'accreditors:download_document' %}">Resources</a></li>
+                                                        {% comment %} <li><a href="{% url 'accreditors:download_document' %}">Resources</a></li> {% endcomment %}
+                                                        <li><a href="{% url 'accreditors:download_pdf_file' %}">Expression Form</a></li>
                                                     </ul>
                                                 </li>
                                                 <li>

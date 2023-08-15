@@ -28,11 +28,35 @@ from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 from django.template.loader import render_to_string
-
+from django.http import HttpResponse, Http404
+# Import mimetypes module
+import mimetypes
 
 logger = logging.getLogger(__name__)
 
 
+
+
+# Define function to download pdf file using template
+def download_pdf_file(request, filename=''):
+    if filename != 'Expression of Interest':
+        # Define Django project base directory
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        # Define the full file path
+        filepath = BASE_DIR + '/static/cap-lasg.pdf' + filename
+        # Open the file for reading content
+        path = open(filepath, 'rb')
+        # Set the mime type
+        mime_type, _ = mimetypes.guess_type(filepath)
+        # Set the return value of the HttpResponse
+        response = HttpResponse(path, content_type=mime_type)
+        # Set the HTTP header for sending to browser
+        response['Content-Disposition'] = "attachment; filename=%s" % filename
+        # Return the response value
+        return response
+    else:
+        # Load the template
+        return HttpResponse('Document not found', status=404)
 
 
 
@@ -214,6 +238,7 @@ def accreditor_application_create_view(request):
 
 def download_document(request):
     document_path = os.path.join(settings.STATICFILES_DIRS[0], 'cap-lag.pdf')
+    #document_path = os.path.join(BASE_DIR, 'static')
     if os.path.exists(document_path):
         with open(document_path, 'rb') as document_file:
             response = HttpResponse(document_file.read(), content_type='application/pdf')

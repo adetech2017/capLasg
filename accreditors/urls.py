@@ -31,5 +31,8 @@ urlpatterns = [
     path('dashboard/add_accreditor_application/', AddAccreditorApplicationView.as_view(), name='add_accreditor_application'),
     
     path('dashboard/test-app', views.create_accreditor_and_applications, name='create_accreditor_application'),
+    
+    path('downloadpdf/', views.download_pdf_file, name='download_pdf_file'),
+    path('downloadpdf//', views.download_pdf_file, name='download_pdf_file'),
 
 ]
