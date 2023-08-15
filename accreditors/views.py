@@ -43,7 +43,7 @@ def download_pdf_file(request, filename=''):
         # Define Django project base directory
         BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         # Define the full file path
-        filepath = BASE_DIR + '/static/cap-lasg.pdf' + filename
+        filepath = BASE_DIR + '/assets/cap-lasg.pdf' + filename
         # Open the file for reading content
         path = open(filepath, 'rb')
         # Set the mime type
