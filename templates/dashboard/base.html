@@ -32,6 +32,26 @@
     <!-- Include SweetAlert CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
+    <script>
+        $(document).ready(function() {
+            // Disable the submit button initially
+            $('input[name="submit"]').prop('disabled', true);
+
+            // Check if all 4 forms are filled in the application formset
+            $('.application-form').change(function() {
+                var filledCount = $('.application-form input[type="text"]').filter(function() {
+                    return this.value.trim() !== '';
+                }).length;
+
+                if (filledCount === 4) {
+                    $('input[name="submit"]').prop('disabled', false);
+                } else {
+                    $('input[name="submit"]').prop('disabled', true);
+                }
+            });
+        });
+    </script>
+
 
     <style>
         #weatherWidget .currentDesc {
@@ -84,9 +104,10 @@
                     </li>
                     <li>
                         <a href="{% url 'accreditors:create_accreditor_application' %}">
-                            <i class="menu-icon ti-email"></i>Application
+                            <i class="menu-icon ti-email"></i>Add Application
                         </a>
                     </li>
+                    
                     
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -115,6 +136,10 @@
                                 <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
                                 <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
                             </form>
+                        </div>
+
+                        <div class="dropdown for-notification">
+                            <a href="/" target="_blank"><strong style="color:red">Vist website</strong></a>
                         </div>
 
                     </div>
@@ -160,6 +185,35 @@
         <!-- /.site-footer -->
     </div>
     <!-- /#right-panel -->
+    <!-- Modal -->
+    <div class="modal fade" id="applicationModal" tabindex="-1" role="dialog" aria-labelledby="applicationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title" id="applicationModalLabel">APPLICATION GUIDELINES</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h4>Important Notice</h4>
+                    <p>The under-listed forms MUST be downloaded from the resources and COMPLETELY filled by all members of the Team</p>
+                    <ul>
+                        <li>EXPRESSION OF INTEREST FORM</li>
+                        <li>*Additional form should be downloaded if the members of the team exceeds four (4)</li>
+                        <li>ATTESTATION FORM</li>
+                    </ul>
+                    <p>You are required to ensure that ALL the documents of members of your team are available before the application form is completed online</p>
+                    <p>Kindly note that the completed forms are part of the documents to be uploaded on the application portal.</p>
+                    <p><strong>(Failure to upload all the relevant documents as requested shall automatically invalidate your application. The acceptable upload format is pdf)</strong></p>
+                    <p>Thank you.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     {% comment %} <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
@@ -279,6 +333,17 @@
         let addButton = document.querySelector("#add-application")
         let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
     </script> {% endcomment %}
+
+    <script>
+        $(document).ready(function () {
+            $('#applicationModal').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget); // Button that triggered the modal
+                // Add any additional data attributes if needed
+                var modal = $(this);
+                // Update modal content here based on data attributes
+            });
+        });
+    </script>
 
 </body>
 </html>

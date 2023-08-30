@@ -10,56 +10,6 @@ from django.forms import formset_factory
 
 
 
-# class ApplicationForm(forms.ModelForm):
-#     class Meta:
-#         model = Application
-#         fields = ['full_name', 'reg_body_no', 'position', 'profession', 'lasrra', 'reg_certificate', 'curr_license', 'pro_certificate']
-        
-#         def __init__(self, *args, **kwargs):
-#             super().__init__(*args, **kwargs)
-#             self.helper = FormHelper()
-#             self.helper.layout = Layout(
-#                 Row(
-#                     Column('full_name', css_class='form-group col-md-6'),
-#                     Column('reg_body_no', css_class='form-group col-md-6'),
-#                     css_class='form-row'
-#                 ),
-#                 'position',
-#                 'profession',
-#                 'lasrra',
-#                 'reg_certificate',
-#                 'curr_license',
-#                 'pro_certificate',
-#                 Submit('submit', 'Create', css_class='btn btn-primary')
-#             )
-        
-
-# class AccreditorForm(forms.ModelForm):
-#     class Meta:
-#         model = Accreditor
-#         exclude = ['description']
-#         #fields = '__all__'
-#         fields = ['category', 'contact_number', 'contact_email', 'contact_address']
-        
-#         widgets = {
-#             'expression_doc': forms.FileInput(attrs={'accept': 'application/pdf'}),
-#         }
-        
-#         def __init__(self, *args, **kwargs):
-#             super().__init__(*args, **kwargs)
-
-#             # Set default value for user_type if it's not already set
-#             if 'user_type' not in self.initial:
-#                 self.initial['user_type'] = 'accreditor'
-        
-#         def __init__(self, *args, **kwargs):
-#             super(AccreditorForm, self).__init__(*args, **kwargs)
-#             if not kwargs.get('instance'):
-#                 self.fields['accreditor_code'].widget = forms.HiddenInput()
-#             else:
-#                 self.fields['accreditor_code'].disabled = True
-
-
 class UserRegistrationForm(UserCreationForm):
     email = forms.EmailField()
 
@@ -101,7 +51,7 @@ class ApplicationForm(forms.ModelForm):
             'reg_certificate': 'Regulatory Body Reg. Certificate(pdf)',
             'curr_license': 'Current Practising License (pdf)',
             'resume': 'Upload Resume (pdf)',
-            'means_of_identity': 'Regulatory Body Reg. No',
+            'means_of_identity': 'Means of Identity',
         }
         
     def clean(self):
@@ -157,14 +107,14 @@ class MyApplicationForm(ApplicationForm):
 class AccreditorApplicationForm(forms.ModelForm):
     class Meta:
         model = Accreditor
-        fields = ['category', 'contact_number', 'contact_email', 'contact_address', 'expression_doc', 'description']
+        fields = ['category', 'contact_number', 'contact_email', 'contact_address', 'expression_doc']
 
     def __init__(self, *args, accreditor=None, **kwargs):
         super(AccreditorApplicationForm, self).__init__(*args, **kwargs)
         self.accreditor = accreditor
 
 
-ApplicationFormSet = inlineformset_factory(Accreditor, Application, fields=['full_name', 'position', 'profession', 'means_of_identity', 'passport_photo', 'reg_certificate', 'curr_license', 'resume'], extra=1)
+
 
 
 
@@ -225,3 +175,6 @@ class ApplicationForms(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+    
+    
+ApplicationFormSet = inlineformset_factory(Accreditor, Application, fields=['full_name', 'position', 'profession', 'means_of_identity', 'passport_photo', 'reg_certificate', 'curr_license', 'resume'], extra=1)

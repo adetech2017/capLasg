@@ -40,11 +40,19 @@ class Accreditor(models.Model):
     user_type = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default='accreditor')
     accreditor_code = models.CharField(max_length=20, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    contact_number = models.CharField(max_length=20)
-    contact_email = models.CharField(max_length=100)
+    contact_number = models.CharField(max_length=20, unique=True)
+    contact_email = models.CharField(max_length=100, unique=True)
     contact_address = models.CharField(max_length=200)
-    expression_doc = models.FileField(upload_to='media/expression_doc', validators=[FileExtensionValidator(['pdf'])], null=True, blank=True)
-    description = models.TextField(null=True, blank=True)
+    expression_doc = models.FileField(
+        upload_to='media/expression_doc',
+        validators=[FileExtensionValidator(['pdf'])],
+        blank=False,
+        null=False)
+    # attestation_file = models.FileField(
+    #     upload_to='media/attestation',
+    #     validators=[FileExtensionValidator(['pdf'])],
+    #     blank=False,
+    #     null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     
@@ -101,17 +109,27 @@ class Application(models.Model):
     accreditor = models.ForeignKey(Accreditor, related_name='applications', on_delete=models.CASCADE)
     status = models.ForeignKey(Status, on_delete=models.CASCADE, default=1)
     full_name = models.CharField(max_length=100)
-    #reg_body_no = models.CharField(max_length=50)
-    #years_of_experience = models.PositiveIntegerField(default=0)
     position = models.CharField(max_length=50, choices=TEAM_TYPE_CHOICES, default='member')
     profession = models.CharField(max_length=50, choices=PRO_TYPE_CHOICES, default='none')
-    means_of_identity = models.FileField(upload_to='media/identity', default='default.jpg')
-    reg_certificate = models.FileField(upload_to='media/reg_certificate', validators=[FileExtensionValidator(['pdf'])])
-    curr_license = models.FileField(upload_to='media/curr_license', validators=[FileExtensionValidator(['pdf'])])
-    resume = models.FileField(upload_to='media/resume', validators=[FileExtensionValidator(['pdf'])])
+    means_of_identity = models.FileField(upload_to='media/identity', blank=False, null=False)
+    reg_certificate = models.FileField(
+        upload_to='media/reg_certificate',
+        validators=[FileExtensionValidator(['pdf'])],
+        blank=False,
+        null=False)
+    curr_license = models.FileField(
+        upload_to='media/curr_license',
+        validators=[FileExtensionValidator(['pdf'])],
+        blank=False,
+        null=False)
+    resume = models.FileField(
+        upload_to='media/resume',
+        validators=[FileExtensionValidator(['pdf'])],
+        blank=False,
+        null=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    passport_photo = models.FileField(upload_to='media/photo', blank=True, null=True, default='default.jpg')
+    passport_photo = models.FileField(upload_to='media/photo', blank=False, null=False)
 
     def __str__(self):
         return self.full_name
@@ -125,3 +143,5 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.reviewer}"
+
+

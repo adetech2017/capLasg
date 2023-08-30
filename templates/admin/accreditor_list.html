@@ -1,0 +1,24 @@
+{% extends "admin/change_list.html" %}
+
+{% block content %}
+<div id="content-main">
+    <h1>
+        Less than 4 Applications
+    </h1>
+    <ul>
+        {% for accreditor in less_than_4 %}
+            <li>{{ accreditor }}</li>
+        {% endfor %}
+    </ul>
+    
+    <h1>
+        4 or More Applications
+    </h1>
+    <ul>
+        {% for accreditor in greater_or_equal_4 %}
+            <li>{{ accreditor }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+

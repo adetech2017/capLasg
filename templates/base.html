@@ -176,11 +176,11 @@
                                                     <li><a href="{% url 'accreditors:logout' %}">Logout</a></li>
                                                 {% else %}
                                                     <!-- Button -->
-                                                    <li class="button-header margin-left ">
+                                                    {% comment %} <li class="button-header margin-left ">
                                                         <a href="{% url 'accreditors:create_account' %}" class="btn">Sign Up</a>
-                                                    </li>
+                                                    </li> {% endcomment %}
                                                     <li class="button-header">
-                                                        <a href="{% url 'accreditors:login' %}" class="btn3">Sign In</a>
+                                                        <a href="{% url 'accreditors:login' %}" class="btn">Sign In</a>
                                                     </li>
                                                 {% endif %}
                                             </ul>
@@ -259,13 +259,13 @@
                             <div class="single-footer-caption mb-50">
                                 <div class="footer-tittle">
                                     <h4>Support</h4>
-                                    {% comment %} <ul>
-                                        <li><a href="#">Technology</a></li>
-                                        <li><a href="#">  Products</a></li>
+                                    <ul>
+                                        <li><a href="{% url 'accreditors:help' %}">Support</a></li>
+                                        {% comment %} <li><a href="#">  Products</a></li>
                                         <li><a href="#">Customers</a></li>
                                         <li><a href="#">Quality</a></li>
-                                        <li><a href="#">Sales geography</a></li>
-                                    </ul> {% endcomment %}
+                                        <li><a href="#">Sales geography</a></li> {% endcomment %}
+                                    </ul>
                                 </div>
                             </div>
                         </div>

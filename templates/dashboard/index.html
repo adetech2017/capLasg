@@ -8,82 +8,7 @@
 <div class="content">
     <!-- Animated -->
     <div class="animated fadeIn">
-        <!-- Widgets  -->
-        {% comment %} <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-1">
-                                <i class="pe-7s-cash"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text">$<span class="count">23569</span></div>
-                                    <div class="stat-heading">Revenue</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-2">
-                                <i class="pe-7s-cart"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">3435</span></div>
-                                    <div class="stat-heading">Sales</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-3">
-                                <i class="pe-7s-browser"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">349</span></div>
-                                    <div class="stat-heading">Templates</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="stat-widget-five">
-                            <div class="stat-icon dib flat-color-4">
-                                <i class="pe-7s-users"></i>
-                            </div>
-                            <div class="stat-content">
-                                <div class="text-left dib">
-                                    <div class="stat-text"><span class="count">2986</span></div>
-                                    <div class="stat-heading">Clients</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> {% endcomment %}
-        <!-- /Widgets -->
-        
         <div class="clearfix"></div>
         <!-- Orders -->
         <div class="orders">
@@ -91,15 +16,30 @@
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="box-title">My Applications </h4>
+                            <a href="{% url 'accreditors:download_pdf_file' %}" type="button" class="btn btn-primary">
+                                Download Expression of Interest Form
+                            </a>
+                            <!-- Button to open modal -->
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#applicationModal">
+                                Open Application Guidelines
+                            </button>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="box-title">My Team Applications </h4>
                         </div>
                         <div class="card-body--">
                             {% if messages %}
-                                <ul class="messages">
-                                    {% for message in messages %}
-                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                                    {% endfor %}
-                                </ul>
+                                {% for message in messages %}
+                                    {% if message.tags == 'success' %}
+                                        <div class="alert alert-success">
+                                            {{ message }}
+                                        </div>
+                                    {% elif message.tags == 'error' %}
+                                        <div class="alert alert-danger">
+                                            {{ message }}
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             {% endif %}
                             <div class="table-stats order-table ov-h">
                                 {% if applications %}
@@ -120,15 +60,20 @@
                                                     <td> {{ application.full_name }} </td>
                                                     <td> {{ application.get_position_display }}</span> </td>
                                                     <td> {{ application.get_profession_display }}</td>
+                                                    {% comment %} <td>
+                                                        <span class="badge badge-warning">{{ application.status }}</span>
+                                                    </td> {% endcomment %}
                                                     <td>
-                                                        <span class="badge badge-pending">{{ application.status }}</span>
+                                                        <span class="badge {% if application.status_id == 1 %}badge-warning{% elif application.status_id == 3 %}badge-success{% elif application.status_id == 2 %}badge-danger{% endif %}">
+                                                            {{ application.status }}
+                                                        </span>
                                                     </td>
                                                 </tr>
                                             {% endfor %}
                                         </tbody>
                                     </table>
                                 {% else %}
-                                    <div>
+                                    <div class="card-body">
                                         <p>No applications found.</p>
                                     </div>
                                 {% endif %}

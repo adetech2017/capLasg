@@ -17,10 +17,10 @@
                             <h1 data-animation="fadeInLeft" data-delay=".6s ">Welcome to CAP</h1>
                             <p data-animation="fadeInLeft" data-delay=".8s">Building Better for a Greater LAGOS</p>
                             <!-- Slider btn -->
-                            <div class="slider-btns">
+                            {% comment %} <div class="slider-btns">
                                 <!-- Hero-btn -->
                                 <a data-animation="fadeInLeft" data-delay="1s" href="{% url 'accreditors:create_account' %}" class="btn radius-btn">get started</a>
-                            </div>
+                            </div> {% endcomment %}
                         </div>
                     </div>
                     <div class="col-xl-6 col-lg-6">
@@ -269,7 +269,7 @@
         <div class="row">
             <div class="col-xl-12 ">
                 <div class="more-btn text-center mt-20">
-                    <a href="{% url 'accreditors:help' %}" class="btn">Go to Support</a>
+                    <a href="{% url 'accreditors:create_account' %}" class="btn">Get Started</a>
                 </div>
             </div>
         </div>

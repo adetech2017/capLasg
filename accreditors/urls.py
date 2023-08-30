@@ -1,8 +1,8 @@
 from  django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from . import views
-from .views import MyFormView, AddAccreditorApplicationView
-
+from .views import MyFormView
+from . import admin_views
 
 
 app_name = 'accreditors'
@@ -28,11 +28,12 @@ urlpatterns = [
     
     path('dashboard/my_form', MyFormView.as_view(), name='my_form_view_name'),
     
-    path('dashboard/add_accreditor_application/', AddAccreditorApplicationView.as_view(), name='add_accreditor_application'),
     
     path('dashboard/test-app', views.create_accreditor_and_applications, name='create_accreditor_application'),
     
     path('downloadpdf/', views.download_pdf_file, name='download_pdf_file'),
     path('downloadpdf//', views.download_pdf_file, name='download_pdf_file'),
+    
+    path('admin/accreditor_application_count/', admin_views.accreditor_application_count, name='accreditor_application_count'),
 
 ]
