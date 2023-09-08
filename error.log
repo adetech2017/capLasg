@@ -10036,3 +10036,61 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: admin/accreditor_list.html
 "GET /admin/accreditors/accreditor/ HTTP/1.1" 500 77580
+Internal Server Error: /dashboard/test-app
+Traceback (most recent call last):
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/accreditors/views.py", line 515, in create_accreditor_and_applications
+    accreditor_form.save()
+  File "/Applications/apps/capLasg/accreditors/forms.py", line 142, in save
+    instance.user = self.user
+    ^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/db/models/fields/related_descriptors.py", line 369, in __set__
+    super().__set__(instance, value)
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/db/models/fields/related_descriptors.py", line 266, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<Accreditor: 090204921808>": "Accreditor.user" must be a "User" instance.
+"POST /dashboard/test-app HTTP/1.1" 500 80413
+Internal Server Error: /dashboard/test-app
+Traceback (most recent call last):
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/accreditors/views.py", line 442, in create_accreditor_and_applications
+    ApplicationInlineFormSet = inlineformset_factory(Accreditor, Application, form=ApplicationForms, extra=4, max_num=4, can_delete=False, can_order=False, prefix='applications')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: inlineformset_factory() got an unexpected keyword argument 'prefix'
+"POST /dashboard/test-app HTTP/1.1" 500 73256
+Internal Server Error: /dashboard/test-app
+Traceback (most recent call last):
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/accreditors/views.py", line 442, in create_accreditor_and_applications
+    ApplicationInlineFormSet = inlineformset_factory(Accreditor, Application, form=ApplicationForms, extra=4, max_num=4, can_delete=False, can_order=False, prefix='applications')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: inlineformset_factory() got an unexpected keyword argument 'prefix'
+"POST /dashboard/test-app HTTP/1.1" 500 73256
+Internal Server Error: /dashboard/test-app
+Traceback (most recent call last):
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/env/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Applications/apps/capLasg/accreditors/views.py", line 442, in create_accreditor_and_applications
+    ApplicationInlineFormSet = inlineformset_factory(Accreditor, Application, form=ApplicationForms, extra=4, max_num=4, can_delete=False, can_order=False, prefix='applications')
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: inlineformset_factory() got an unexpected keyword argument 'prefix'
+"GET /dashboard/test-app HTTP/1.1" 500 64113
